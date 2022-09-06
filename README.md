@@ -20,27 +20,38 @@
 docker pull alexcodesxg/api_yamdb:v1.09.2022
 ```
 
-2. Собрать контейнеры:
+2. Создать и заполнить .env файл (например):
+```
+SECRET_KEY=D0fb_u6kIilA5DgHUIBjB
+DB_ENGINE=django.db.backends.postgresql
+DB_NAME=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=test1
+DB_HOST=db
+DB_PORT=5432
+```
+
+3. Собрать контейнеры:
 ```
 docker-compose up -d --build
 ```
 
-3. Провести миграции:
+4. Провести миграции:
 ```
 docker-compose exec web python manage.py migrate
 ```
 
-4. Собрать статику:
+5. Собрать статику:
 ```
 docker-compose exec web python manage.py collectstatic --no-input
 ```
 
-5. Загрузить данных из фикстур:
+6. Загрузить данных из фикстур:
 ```
 docker-compose exec web python manage.py dumpdata > fixtures.json
 ```
 
-6. Запустить проект по ссылке:
+7. Запустить проект по ссылке:
 ```
     http://localhost/
 ```
