@@ -1,5 +1,4 @@
 <h1 align="left">Проект YaMDb</h1>
-<img src="./readme_assets/3.png" width="100%"> 
 
 ## Общее описание:
 
