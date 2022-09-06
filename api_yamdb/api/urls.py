@@ -3,17 +3,18 @@ from users import views as user_views
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
+app_name = 'api'
 
-router = DefaultRouter()
-router.register('users', user_views.UserViewSet, basename='users')
-router.register('titles', views.TitleViewSet, basename='titles')
-router.register('genres', views.GenreViewSet)
-router.register('categories', views.CategoryViewSet, basename='categories')
-router.register(
+router_v1 = DefaultRouter()
+router_v1.register('users', user_views.UserViewSet, basename='users')
+router_v1.register('titles', views.TitleViewSet, basename='titles')
+router_v1.register('genres', views.GenreViewSet)
+router_v1.register('categories', views.CategoryViewSet, basename='categories')
+router_v1.register(
     r'titles/(?P<title_id>\d+)/reviews',
     views.ReviewsViewSet, basename='reviews'
 )
-router.register(
+router_v1.register(
     r'titles/(?P<title_id>\d+)/reviews/(?P<review_id>\d+)/comments',
     views.CommentsViewSet, basename='comments'
 )
@@ -26,5 +27,5 @@ urlpatterns = [
         'auth/token/',
         user_views.ObtainTokenView.as_view(),
         name='token_obtain_pair'),
-    path('', include(router.urls)),
+    path('v1/', include(router_v1.urls)),
 ]
